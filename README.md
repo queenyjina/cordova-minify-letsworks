@@ -11,3 +11,13 @@ config.xml 파일에 아래 구문삽입
 ```
 <hook src="hook/minify.js" type="after_prepare"/>
 ```
+
+## Dependencies
+* [uglify-js](https://github.com/mishoo/UglifyJS2)
+* [clean-css](https://github.com/jakubpawlowicz/clean-css)
+* [imagemin](https://github.com/imagemin/imagemin) (**not** image-min)
+* [imagemin-svgo](https://github.com/imagemin/imagemin-svgo)
+* [imagemin-jpegtran](https://github.com/imagemin/imagemin-jpegtran)
+* [imagemin-gifsicle](https://github.com/imagemin/imagemin-gifsicle)
+* [imagemin-optipng](https://github.com/imagemin/imagemin-optipng)
+* [html-minifier](https://github.com/kangax/html-minifier)
