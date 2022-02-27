@@ -1,5 +1,7 @@
 # cordova-minify-letsworks
 
+cordova www 내에 소스등을 최적화 하는 plugin 입니다.
+
 ## 설치
 ```
 npm install https://github.com/queenyjina/cordova-minify-letsworks.git
