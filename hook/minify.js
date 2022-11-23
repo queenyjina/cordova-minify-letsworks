@@ -2,6 +2,11 @@
 
 module.exports=function(ctx){
 
+    let excludefile=[
+            'loaded.js',
+            // 'nlibrary.js',
+        ];
+
     const fs=require('fs'),
         path=require('path'),
         UglifyJS=require('uglify-js'),
@@ -72,6 +77,14 @@ module.exports=function(ctx){
         switch(key){
             case '.html':
                 val.forEach(file=>{
+                    //제외파일
+                    var pass=false;
+                    excludefile.forEach(ex=>{
+                        if(file.match(new RegExp(ex,'gi'))){
+                            pass=true;
+                            return false;
+                        }
+                    }); if(pass) return;
                     var source=fs.readFileSync(file, 'utf8');
                     if(!source||source.length==0){
                         console.error('Empty Minify: '+file);
@@ -88,6 +101,15 @@ module.exports=function(ctx){
                 break;
             case '.js':
                 val.forEach(file=>{
+                    //제외파일
+                    var pass=false;
+                    excludefile.forEach(ex=>{
+                        console.log(file.match(new RegExp(ex,'gi')),ex,file);
+                        if(file.match(new RegExp(ex,'gi'))){
+                            pass=true;
+                            return false;
+                        }
+                    }); if(pass) return;
                     var source=fs.readFileSync(file, 'utf8');
                     if(!source||source.length==0){
                         console.error('Empty Minify: '+file);
@@ -111,6 +133,14 @@ module.exports=function(ctx){
                 break;
             case '.css':
                 val.forEach(file=>{
+                    //제외파일
+                    var pass=false;
+                    excludefile.forEach(ex=>{
+                        if(file.match(new RegExp(ex,'gi'))){
+                            pass=true;
+                            return false;
+                        }
+                    }); if(pass) return;
                     var source=fs.readFileSync(file, 'utf8');
                     if(!source||source.length==0){
                         console.error('Empty Minify: '+file);
@@ -128,6 +158,14 @@ module.exports=function(ctx){
             // Image options https://github.com/imagemin/imagemin
             case '.svg':
                 val.forEach(file=>{
+                    //제외파일
+                    var pass=false;
+                    excludefile.forEach(ex=>{
+                        if(file.match(new RegExp(ex,'gi'))){
+                            pass=true;
+                            return false;
+                        }
+                    }); if(pass) return;
                     // svgGo options https://www.npmjs.com/package/imagemin-svgo#options
                     imagemin([file+'/*.'+key], { destination:file, plugins: [imageminSvgo()]}).then((files) => {
                     });
@@ -135,6 +173,14 @@ module.exports=function(ctx){
                 break;
             case '.gif':
                 val.forEach(file=>{
+                    //제외파일
+                    var pass=false;
+                    excludefile.forEach(ex=>{
+                        if(file.match(new RegExp(ex,'gi'))){
+                            pass=true;
+                            return false;
+                        }
+                    }); if(pass) return;
                     // OptiPNG options https://www.npmjs.com/package/imagemin-optipng#options
                     imagemin([file+'/*.'+key], { destination:file, plugins: [imageminGifsicle({interlaced: true})]}).then((files) => {
                     });
@@ -142,6 +188,14 @@ module.exports=function(ctx){
                 break;
             case '.png':
                 val.forEach(file=>{
+                    //제외파일
+                    var pass=false;
+                    excludefile.forEach(ex=>{
+                        if(file.match(new RegExp(ex,'gi'))){
+                            pass=true;
+                            return false;
+                        }
+                    }); if(pass) return;
                     // OptiPNG options https://www.npmjs.com/package/imagemin-optipng#options
                     imagemin([file+'/*.'+key], { destination:file, plugins: [imageminOptipng({optimizationLevel: 2})]}).then((files) => {
                     });
@@ -149,6 +203,14 @@ module.exports=function(ctx){
                 break;
             case '.jpg':
                 val.forEach(file=>{
+                    //제외파일
+                    var pass=false;
+                    excludefile.forEach(ex=>{
+                        if(file.match(new RegExp(ex,'gi'))){
+                            pass=true;
+                            return false;
+                        }
+                    }); if(pass) return;
                     // jpegTran options https://www.npmjs.com/package/imagemin-jpegtran#options
                     imagemin([file+'/*.'+key], { destination:file, plugins: [imageminJpegtran({progressive: true})]}).then((files)=>{
                     });
