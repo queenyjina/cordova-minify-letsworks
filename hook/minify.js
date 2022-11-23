@@ -104,7 +104,6 @@ module.exports=function(ctx){
                     //제외파일
                     var pass=false;
                     excludefile.forEach(ex=>{
-                        console.log(file.match(new RegExp(ex,'gi')),ex,file);
                         if(file.match(new RegExp(ex,'gi'))){
                             pass=true;
                             return false;
